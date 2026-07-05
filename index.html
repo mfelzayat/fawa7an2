@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fawa7an | Reimagined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #09090b;
+            --bg-card: #121216;
+            --gold: #d4af37;
+            --gold-dim: rgba(212, 175, 55, 0.3);
+            --text-main: #f0f0f0;
+            --text-muted: #888899;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, var(--bg-dark) 60%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.2s;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.4s;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.6s;
+            cursor: pointer;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--gold-dim);
+        }
+
+        /* Trust Banner */
+        .trust-banner {
+            display: flex;
+            justify-content: space-around;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: var(--bg-card);
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-item h4 {
+            font-family: var(--font-serif);
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Products Grid */
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            margin: 6rem 0 3rem;
+            font-weight: 400;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 0 5%;
+            margin-bottom: 6rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-dim);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 250px;
+            background: #000;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        .brand {
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Bundle Section */
+        .bundle {
+            background: linear-gradient(45deg, var(--bg-card), #1a1a24);
+            margin: 0 5% 6rem;
+            padding: 5rem;
+            text-align: center;
+            border: 1px solid var(--gold-dim);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bundle h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .bundle p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .nav-links { display: none; }
+            .bundle { padding: 3rem 1.5rem; }
+            .bundle h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">fawa7an<span>.</span></a>
+        <div class="nav-links">
+            <a href="#">Shop</a>
+            <a href="#">Brands</a>
+            <a href="#">Signature Bundle</a>
+            <a href="#">About</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>The Art of<br>Authentic Sillage.</h1>
+        <p>Egypt's definitive fragrance authority. 100% Master Swiss Quality designer & niche perfumes, delivered in 1-3 days.</p>
+        <a href="#" class="btn-gold">Explore the Collection</a>
+    </section>
+
+    <div class="trust-banner">
+        <div class="trust-item">
+            <h4>Master Swiss</h4>
+            <p>100% Authentic Quality</p>
+        </div>
+        <div class="trust-item">
+            <h4>1-3 Days</h4>
+            <p>Fast Nationwide Delivery</p>
+        </div>
+        <div class="trust-item">
+            <h4>33 Houses</h4>
+            <p>Curated Expert Selection</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Iconic Bestsellers</h2>
+    <div class="grid">
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-img">[ Product Image ]</div>
+            <div class="brand">Dior</div>
+            <div class="name">Oud Ispahan</div>
+            <div class="price">EGP 7,565</div>
+        </div>
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-img">[ Product Image ]</div>
+            <div class="brand">Amouage</div>
+            <div class="name">Interlude</div>
+            <div class="price">EGP 23,100</div>
+        </div>
+        <!-- Card 3 -->
+        <div class="card">
+            <div class="card-img">[ Product Image ]</div>
+            <div class="brand">Yves Saint Laurent</div>
+            <div class="name">Libre</div>
+            <div class="price">EGP 7,409</div>
+        </div>
+    </div>
+
+    <section class="bundle">
+        <h2>The Signature Bundle</h2>
+        <p>Curate your own olfactory wardrobe. Pick any three fragrances and save 15% versus buying separately. Beautifully boxed.</p>
+        <a href="#" class="btn-gold" style="background: var(--gold); color: var(--bg-dark);">Build Your Bundle</a>
+    </section>
+
+</body>
+</html>
